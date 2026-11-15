@@ -1,0 +1,26 @@
+name: Help or question
+description: Ask how to use or configure a Velunori component.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Read the component README and [support guide](https://github.com/Velunori/.github/blob/main/SUPPORT.md) first. Use the bug or installation form for reproducible failures. Keep passwords, tokens and personal data out of the report.
+  - type: textarea
+    id: question
+    attributes:
+      label: What do you need help with?
+      description: Describe your goal and the component involved.
+    validations:
+      required: true
+  - type: textarea
+    id: attempts
+    attributes:
+      label: What have you tried?
+      description: Link the instructions you followed and describe what happened.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Relevant versions and setup
+      description: Include Omarchy version, installation method and component commit where relevant. If unknown, say so.

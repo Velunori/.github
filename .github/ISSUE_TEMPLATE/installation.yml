@@ -1,0 +1,40 @@
+name: Installation or update problem
+description: Get help with installing, updating or restoring Velunori.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Bundle installation problems belong in [Velunori/velunori](https://github.com/Velunori/velunori/issues/new/choose). If you are reporting an individual component installer, use its repository. Remove credentials and personal data from output.
+  - type: dropdown
+    id: operation
+    attributes:
+      label: Which operation failed?
+      options:
+        - First installation
+        - Updating an existing installation
+        - Restoring or removing components
+        - Other installation problem
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command and error output
+      description: Include the exact command, any installer flags, relevant output, and the step where it stopped. Do not rerun a modifying command just to collect output.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Installation details
+      description: Include Omarchy version, bundle/component commit, checkout location and whether this is a bundle or individual installation. For a bundle, include git submodule status if available. Mention an older Velunori installation linked elsewhere. If a detail is unknown, say so.
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Expected result and current state
+      description: What should have happened? What remains installed or working? Include any recovery steps you already tried and their results.
+    validations:
+      required: true

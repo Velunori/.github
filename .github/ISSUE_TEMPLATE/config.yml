@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Installation guide and recovery
+    url: https://github.com/Velunori/velunori#install-the-whole-suite
+    about: Read the suite requirements, installation options, update and recovery instructions.
+  - name: Report a security vulnerability privately
+    url: https://github.com/Velunori/velunori/security/advisories/new
+    about: Do not disclose vulnerabilities or credentials in public issues.
+  - name: Support and repository routing
+    url: https://github.com/Velunori/.github/blob/main/SUPPORT.md
+    about: Find the right repository and information to include.

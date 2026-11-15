@@ -36,4 +36,4 @@ Run from an unlocked Omarchy desktop terminal, without `sudo`. Installation repl
 
 ### Contribute
 
-Report installation issues in [velunori](https://github.com/Velunori/velunori/issues), or open an issue or pull request in the relevant component repository. Each component documents its development checks and current limitations.
+Read the [contribution guidelines](https://github.com/Velunori/.github/blob/main/CONTRIBUTING.md) for development setup, checks and pull requests. Use the [issue forms](https://github.com/Velunori/velunori/issues/new/choose) for installation problems, or report a component issue in its repository. See [support](https://github.com/Velunori/.github/blob/main/SUPPORT.md), our [Code of Conduct](https://github.com/Velunori/.github/blob/main/CODE_OF_CONDUCT.md) and [private security reporting](https://github.com/Velunori/.github/blob/main/SECURITY.md).

@@ -1,0 +1,22 @@
+name: Feature or improvement
+description: Suggest a feature, design change or documentation improvement.
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: Problem or use case
+      description: Which component or documentation is involved, and what are you trying to accomplish?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed improvement
+      description: Describe the desired behavior or documentation change. Include examples or mockups if useful.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives and context
+      description: Describe workarounds, related issues, accessibility needs or tradeoffs. Suggestions do not require an implementation commitment.

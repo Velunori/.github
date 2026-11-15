@@ -1,0 +1,42 @@
+name: Bug report
+description: Report incorrect behavior in a Velunori component.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Search existing issues and use the affected component's repository when possible. For installer failures, use the installation form. Do not post credentials or private data; report vulnerabilities through the Security tab.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Describe the actual behavior and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Include the smallest repeatable example and how often it happens. Use sample calendar/account data.
+      placeholder: |
+        1. Open ...
+        2. Select ...
+        3. Observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment and versions
+      description: Include your Omarchy version, affected component and commit, and installation method. If unknown, say so. For visual bugs include monitor resolution, scale and Island/Orbit layout; for crashes include Qt/Quickshell versions if available.
+      placeholder: |
+        Omarchy:
+        Component and commit:
+        Installation method (bundle / individual checkout / other):
+        Relevant display or runtime details:
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Logs, screenshots and regression details
+      description: Paste relevant errors, attach redacted screenshots, and mention a last working revision if known. Do not upload raw core dumps or private calendar/account stores.

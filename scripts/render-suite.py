@@ -51,7 +51,7 @@ footer{position:absolute;left:86px;right:86px;top:1580px;display:flex;justify-co
 <div class="bar right">♫ <span style="color:#a0ddbf">↗</span> ◌ <span style="color:#aaa4b6">Floating Bars</span></div>
 '''.replace('WALLPAPER',wallpaper).replace('MARK',mark)
 html += shot('menu','Menu',44,180,600)
-html += shot('appearance','Floating Bars · Appearance',710,144,420,crop=520)
+html += shot('appearance','Floating Bars · Appearance',710,144,420)
 html += shot('clock','Clock & Calendar',1180,178,370)
 html += shot('control-center','Control Center',1610,146,410)
 html += shot('notifications','Notifications',44,720,370)

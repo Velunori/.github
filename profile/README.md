@@ -2,29 +2,27 @@
 
 A complete desktop suite for **Omarchy**, with floating bars, coordinated panels and a graphite, lavender and mint palette.
 
-![Velunori appearance settings and floating bar layouts](https://raw.githubusercontent.com/Velunori/velunori/main/docs/preview.png)
+[![Velunori: the whole desktop suite for Omarchy](assets/velunori-suite.png)](https://velunori.github.io/)
+
+<sub>Native component previews with sample data. Every component has its own repository, listed in [the suite](#the-suite).</sub>
 
 ### Start here
 
-**[Install the full Velunori suite →](https://github.com/Velunori/velunori#install-the-whole-suite)**
-
-The main repository brings together all nine components, an installation script, requirements, update instructions and recovery steps.
+**[velunori.github.io](https://velunori.github.io/)**: pick the full suite or individual components and get a matching install command.
 
 ```bash
-git clone --recurse-submodules https://github.com/Velunori/velunori.git ~/dev/velunori
-cd ~/dev/velunori
-bash scripts/install.sh --dry-run
-bash scripts/install.sh
+curl -fsSL https://velunori.github.io/install.sh | bash -s -- --all
 ```
 
-Run from an unlocked Omarchy desktop terminal, without `sudo`. Installation replaces the corresponding shell components, restarts the shell and applies the theme. Read the [requirements and options](https://github.com/Velunori/velunori#install-the-whole-suite) first; you can keep your current theme or lock screen. Keep the checkout in place: installed plugins link to it.
+Run it from an unlocked Omarchy desktop terminal, without `sudo`. Omit `--all` to choose components interactively. The script shows the plan, checks prerequisites and asks for confirmation before changing anything. The shared library is added automatically, and you can keep your current bar, theme or lock screen. Read the [installation guide](https://velunori.github.io/guide.html) for requirements, recovery and current limits.
 
 ### The suite
 
 | Repository | What it provides |
 | --- | --- |
-| **[velunori](https://github.com/Velunori/velunori)** | **Start here: full installation, updates and recovery** |
-| [core](https://github.com/Velunori/core) | Island and Orbit bars, appearance settings and the shared design kit |
+| **[velunori](https://github.com/Velunori/velunori)** | **Suite composition, pinned versions and the installer** |
+| [lib](https://github.com/Velunori/lib) | Shared design kit, palette, branding and panel geometry for every component |
+| [bar](https://github.com/Velunori/bar) | Optional Island and Orbit Floating Bars with appearance settings |
 | [clock](https://github.com/Velunori/clock) | Clock, calendar and local/Google/iCloud events |
 | [control-center](https://github.com/Velunori/control-center) | Sound, displays, network, capture and reminders |
 | [notifications](https://github.com/Velunori/notifications) | Notification cards and session history |
@@ -36,4 +34,8 @@ Run from an unlocked Omarchy desktop terminal, without `sudo`. Installation repl
 
 ### Contribute
 
+Want to create another component? Start with the [plugin-author guide](https://github.com/Velunori/.github/blob/main/docs/plugin-authoring.md), then read [how plugins join the suite](https://github.com/Velunori/.github/blob/main/docs/suite-inclusion.md).
+
 Read the [contribution guidelines](https://github.com/Velunori/.github/blob/main/CONTRIBUTING.md) for development setup, checks and pull requests. Use the [issue forms](https://github.com/Velunori/velunori/issues/new/choose) for installation problems, or report a component issue in its repository. See [support](https://github.com/Velunori/.github/blob/main/SUPPORT.md), our [Code of Conduct](https://github.com/Velunori/.github/blob/main/CODE_OF_CONDUCT.md) and [private security reporting](https://github.com/Velunori/.github/blob/main/SECURITY.md).
+
+<sub>[Support Velunori development](https://revolut.me/szalikdev)</sub>

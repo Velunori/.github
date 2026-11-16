@@ -2,7 +2,7 @@
 
 A complete desktop suite for **Omarchy**, with floating bars, coordinated panels and a graphite, lavender and mint palette.
 
-[![Velunori: the whole desktop suite for Omarchy](assets/velunori-suite.png)](https://velunori.github.io/)
+[![Velunori: the whole desktop suite for Omarchy](https://raw.githubusercontent.com/Velunori/.github/main/profile/assets/velunori-suite.png)](https://velunori.github.io/)
 
 <sub>Native component previews with sample data. Every component has its own repository, listed in [the suite](#the-suite).</sub>
 

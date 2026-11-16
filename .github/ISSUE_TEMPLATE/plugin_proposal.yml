@@ -1,0 +1,44 @@
+name: Propose a Velunori plugin
+description: Propose a standalone component for possible inclusion in the suite.
+title: "[Plugin proposal]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Read the [authoring guide](https://github.com/Velunori/.github/blob/main/docs/plugin-authoring.md) and [suite inclusion process](https://github.com/Velunori/.github/blob/main/docs/suite-inclusion.md).
+        You can propose an idea before implementation. State what is unknown; do not include credentials or private user data. Submission does not guarantee inclusion.
+  - type: textarea
+    id: purpose
+    attributes:
+      label: User problem and workflow
+      description: Who needs this, how would they use it, and how does it differ from existing components?
+    validations:
+      required: true
+  - type: textarea
+    id: ownership
+    attributes:
+      label: Source, license and maintenance
+      description: Link the repository if one exists, identify licensing and proposed maintainers, and use your own namespace until a Velunori ID is agreed.
+    validations:
+      required: true
+  - type: textarea
+    id: integration
+    attributes:
+      label: Dependencies and standalone behavior
+      description: State plugin kinds, library API/version range, supported Omarchy versions, external tools and how it works without Floating Bars. Explain any built-in replacement identity.
+    validations:
+      required: true
+  - type: textarea
+    id: data
+    attributes:
+      label: Accounts, data and desktop changes
+      description: Describe network/privileged operations, credential handling, persistence, migrations, installation, removal and recovery. State unknowns explicitly.
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Evidence and remaining checks
+      description: Include sample-data previews and checks actually completed. Separate mocks/offscreen tests from live desktop or provider verification. An idea-only proposal can state that no implementation exists yet.
+    validations:
+      required: true

@@ -1,108 +1,56 @@
 # Contributing to Velunori
 
-Bug reports, documentation improvements, design feedback and focused pull requests are welcome. These guidelines apply across the Velunori organization; a repository's README describes its specific requirements and checks.
+Help improve existing components, documentation and accessibility, or build a new plugin that works on its own and can be proposed for the Velunori suite.
 
-## Choose the repository
+## Start here
 
-| Repository | Scope |
+- [Development setup and architecture](https://github.com/Velunori/.github/blob/main/docs/development.md)
+- [Create a plugin with Velunori Library](https://github.com/Velunori/.github/blob/main/docs/plugin-authoring.md)
+- [Propose a plugin for the suite](https://github.com/Velunori/.github/blob/main/docs/suite-inclusion.md)
+- [Testing and review](https://github.com/Velunori/.github/blob/main/docs/testing.md)
+- [Working example: Hello](https://github.com/Velunori/.github/blob/main/examples/hello/README.md)
+
+**Architecture:** shared UI lives in `lib` (`velunori.lib`, API 1). Floating Bars is the optional `bar` plugin (`velunori.bar`); every feature plugin also works on the stock Omarchy bar. See [development setup and architecture](https://github.com/Velunori/.github/blob/main/docs/development.md).
+
+## Where to contribute
+
+| Repository | Responsibility |
 | --- | --- |
-| [velunori](https://github.com/Velunori/velunori) | Bundle installer, pinned component versions, installation and recovery documentation |
-| [core](https://github.com/Velunori/core) | Floating bars, shared design kit, appearance and branding |
-| [clock](https://github.com/Velunori/clock) | Calendar, events and Google/iCloud synchronization |
-| [control-center](https://github.com/Velunori/control-center) | Audio, displays, network, capture and reminders |
-| [notifications](https://github.com/Velunori/notifications) | Notification cards and history |
-| [menu](https://github.com/Velunori/menu) | Launcher, command menu and prompts |
-| [weather](https://github.com/Velunori/weather) | Cities, current conditions and forecasts |
-| [update](https://github.com/Velunori/update) | Update window and progress reporting |
-| [lockscreen](https://github.com/Velunori/lockscreen) | Serene lock screen presentation |
-| [theme](https://github.com/Velunori/theme) | Palette, wallpaper and window styling |
-| [.github](https://github.com/Velunori/.github) | Organization profile, shared templates and community guidelines |
+| `velunori` | Suite composition, pinned versions, guided installer and recovery |
+| `lib` | Shared QML controls, tokens, assets, geometry and scoped host adapters |
+| `bar` | Optional Island/Orbit Floating Bars, workspace rendering and bar appearance |
+| `clock` | Clock, editable calendars and Google/iCloud synchronization |
+| `control-center` | Audio, displays, network, capture and reminders |
+| `notifications` | Notification cards and history |
+| `menu` | Command menu, launcher and prompts |
+| `weather` | Cities and forecasts |
+| `update` | Presentation for Omarchy's updater |
+| `lockscreen` | Serene presentation; Omarchy owns lock/PAM authentication |
+| `theme` | Standalone palette, wallpaper and window styling |
+| `.github` | Shared contributor docs, issue forms and community policies |
 
-If the component is unclear, use the bundle repository and describe where the problem appears. Search existing issues first. For larger changes or new dependencies, open an issue to discuss the approach before spending substantial effort.
+A new plugin may begin in your own repository and namespace; discuss its ownership before proposing it under `Velunori`.
 
-Use the issue forms to include reproduction steps, expected and actual behavior, Omarchy version, component commit and relevant logs. Screenshots help with visual problems. Remove tokens, passwords, calendar contents and other personal information. Report vulnerabilities privately as described in [SECURITY.md](https://github.com/Velunori/.github/blob/main/SECURITY.md).
+## Report a problem or suggest a change
 
-## Set up a checkout
+Search existing issues. Include reproduction steps, expected/actual behavior, Omarchy and component versions, and relevant sanitized diagnostics. Component problems belong in that component's repository; suite installation and dependency problems belong in `velunori`. For a larger feature or new dependency, discuss its purpose and approach before substantial implementation. Small, clear fixes do not require a preliminary issue.
 
-Fork the repository you intend to change. For a component, clone your fork beside a checkout of `core` so QML's sibling imports work:
+Remove account details, tokens, passwords, private calendar events and notification contents. Suspected vulnerabilities belong in [private security reporting](https://github.com/Velunori/.github/blob/main/SECURITY.md), not a public issue.
 
-```bash
-mkdir -p ~/dev/velunori-contributions
-cd ~/dev/velunori-contributions
-git clone https://github.com/Velunori/core.git
-git clone https://github.com/YOUR-USERNAME/clock.git
-cd clock
-git switch -c fix/calendar-navigation
-```
+## Make a focused change
 
-Replace `clock` with your component. If you are changing core, clone your core fork instead. Read the component's README and nearby implementation before editing. Preserve the sibling layout and compatibility with both copied and symlinked installations.
+Fork the repository, work on a branch, and read its README, checks and nearby implementation. Keep unrelated work intact. Reuse the shared library; feature plugins must not depend on Floating Bars for ordinary operation. Changes to the library API require compatibility notes and consumer checks.
 
-For the bundle, clone your fork with its submodules:
+Keep panels bounded to the monitor, scroll overflow, retain essential actions and support keyboard, wheel and touchpad input. Text fields must receive normal editing keys. Settings and account-management flows should stay in the plugin where supported.
 
-```bash
-git clone --recurse-submodules https://github.com/YOUR-USERNAME/velunori.git
-cd velunori
-git switch -c fix/install-message
-```
+Calendar all-day end dates are exclusive; preserve time zones, recurrence, unrelated remote properties and cached events after failed synchronization. Editable cloud calendars need bidirectional create/edit/delete support.
 
-Submodules are separate repositories, usually checked out at detached commits. Send component changes to the component repository first. A bundle pointer update should reference a commit available in the public upstream component repository; do not point it at a local-only or fork-only commit. Include the reason for each pointer update.
-
-Source checkouts do not require installation on your desktop. Read any installer before running it. Never modify `/usr/share/omarchy/` as part of development, and do not alter live user configuration as a side effect of checks.
-
-## Implementation and design
-
-- Reuse `core/kit`, shared typography, spacing and theme APIs. Keep settings and management flows inside Velunori where supported.
-- Bound panels to the monitor, scroll overflowing content and keep essential actions reachable on smaller screens. Support mouse wheels, touchpads, keyboard navigation and normal text editing.
-- Keep changes focused and preserve unrelated work. Avoid adding dependencies or refactoring unrelated code without a concrete reason.
-- Keep calendar data persistent and notification history session-only. Calendar all-day end dates are exclusive; preserve time zones, recurrence and unrelated remote properties. Retain cached events after failed synchronization and check conflicts before remote writes.
-- Connect accounts only through explicit user actions. Never commit credentials or print them in arguments, diagnostics or test output.
-
-## Validate your changes
-
-Run the affected repository's documented checks. Most plugins provide these commands, run from that plugin's directory:
-
-```bash
-bash scripts/check.sh
-VELUNORI_TEST_LAYOUT=symlink bash scripts/check.sh
-```
-
-Core and theme have their own checks; follow their README rather than assuming every option applies. The QML checks require the Qt/Quickshell and Omarchy dependencies listed by each component. Calendar cloud checks use the private environment created by `bash scripts/setup-deps.sh`; use `.venv/bin/python` when running those Python checks directly. Backend tests must use temporary XDG data directories and stand-in accounts so they cannot change a real calendar.
-
-For the bundle, run from its root:
-
-```bash
-bash -n scripts/install.sh
-python3 -m unittest discover -s tests -v
-bash scripts/install.sh --dry-run
-```
-
-For documentation-only changes, check links, paths, Markdown and any YAML you edited; a full desktop test is generally unnecessary.
-
-Keep validation safe and report its limits:
-
-- Lock screen tests instantiate only the view in a regular window. Never lock the desktop or invoke real authentication as a test.
-- Update tests use the stand-in under `update/tests`; never run a real system update to test the UI.
-- Theme checks render and validate in temporary locations; do not apply the theme to the live desktop as a development side effect.
-- Automated QML tests do not verify real desktop placement, scrolling, authentication or live cloud synchronization. State which checks ran and which still need desktop verification.
-- When investigating host crashes, consult [core's stability notes](https://github.com/Velunori/core/blob/main/docs/stability.md). Do not claim an upstream Qt/Quickshell crash is fixed based on an offscreen smoke test.
-
-## Documentation and previews
-
-Plugin READMEs share this layout: title, one-line summary, `docs/preview.png`, Features, Requirements, Install, Development, Limits, the shared plugin table and License. Keep documentation and previews aligned when behavior or appearance changes.
-
-Generate a preview using the affected plugin's own check and the shared compositor. For example, from the parent directory containing `core` and `clock`:
-
-```bash
-VELUNORI_PREVIEW_PATH=/tmp/velunori-clock.png bash clock/scripts/check.sh
-bash core/scripts/compose-preview.sh /tmp/velunori-clock.png clock/docs/preview.png
-```
-
-Use sample data in screenshots. Do not include account details, private events, notifications or tokens.
+Keep credentials out of repositories, arguments and logs. Connect accounts only through explicit user actions. Persistent user data needs a documented location, permissions, migration and removal policy; notification history has a session-only lifetime.
 
 ## Submit a pull request
 
-Send the PR to the repository's default branch (`main` for most components; check the repository rather than assuming). Explain the problem and the resulting behavior, link an issue if one exists, and list completed checks with their results. Add before/after screenshots for visual changes and mention any remaining live checks or compatibility limitations.
+Use the repository's default branch; do not assume its name. Describe the concrete problem and resulting behavior, link relevant issues, and list checks actually completed. Provide sample-data previews for visual changes. State remaining live checks, supported environments and known limitations honestly.
 
-You do not need to open an issue for a small, clear fix. Avoid committing virtual environments, caches, generated user data or unrelated formatting changes. Keep existing license and attribution notices; third-party code and assets need appropriate license information. Contributions are submitted under the affected repository's existing license.
+Follow the [testing guide](https://github.com/Velunori/.github/blob/main/docs/testing.md). Keep READMEs, dependency metadata and previews in step with the code. Preserve licenses and third-party notices, and do not commit virtual environments, caches, credentials or user data. Contributions use the affected repository's license.
 
-Follow our [Code of Conduct](https://github.com/Velunori/.github/blob/main/CODE_OF_CONDUCT.md). Maintainers may request revisions or decline changes that do not fit the project; no response or release deadline is guaranteed.
+Follow the [Code of Conduct](https://github.com/Velunori/.github/blob/main/CODE_OF_CONDUCT.md). Maintainers may request revisions or decline work outside the project scope; a proposal does not guarantee acceptance or a release date. For general help, read [SUPPORT.md](https://github.com/Velunori/.github/blob/main/SUPPORT.md).

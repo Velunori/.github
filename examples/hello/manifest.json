@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "yourname.hello",
+  "name": "Hello Velunori",
+  "version": "0.1.0",
+  "author": "Your name",
+  "license": "MIT",
+  "description": "A small example widget using Velunori Library without Floating Bars.",
+  "kinds": ["bar-widget"],
+  "entryPoints": {"barWidget": "Widget.qml"},
+  "barWidget": {
+    "displayName": "Hello Velunori",
+    "category": "Info",
+    "allowMultiple": false,
+    "defaultSection": "right",
+    "defaults": {}
+  },
+  "velunori": {
+    "dependencies": {
+      "velunori.lib": {
+        "apiVersion": 1,
+        "minimumVersion": "1.0.0",
+        "maximumExclusive": "2.0.0"
+      }
+    }
+  }
+}
